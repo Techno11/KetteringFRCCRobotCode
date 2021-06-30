@@ -1,0 +1,1 @@
+This was written to test WS2811 LEDs being directly controlled via a RoboRio. I could never get it to work, but I'm not sure if thats because the code never worked, the LEDs I had never worked, the RoboRio didn't like my LEDs, or some combination of all three.
