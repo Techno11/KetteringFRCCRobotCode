@@ -7,11 +7,14 @@
 
 package frc.robot.subsystems;
 
+import java.util.ArrayList;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.music.Orchestra;
 
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -23,27 +26,45 @@ import frc.robot.commands.DriveCommand;
 public class DriveSubysystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private VictorSPX lDrive, rDrive, hDrive; 
+  private VictorSPX hDrive; 
+  private TalonFX lDriveRear, lDriveFront, rDriveRear, rDriveFront;
 
   public DriveSubysystem() {
-    lDrive = new VictorSPX(RobotMap.lDrive);
-    rDrive = new VictorSPX(RobotMap.rDrive);
     hDrive = new VictorSPX(RobotMap.hDrive);
+    lDriveRear = new TalonFX(RobotMap.lDriveRear);
+    lDriveFront= new TalonFX(RobotMap.lDriveFront);
+    rDriveRear = new TalonFX(RobotMap.rDriveRear);
+    rDriveFront = new TalonFX(RobotMap.rDriveFront);
 
     //Set Follower and invert
-    rDrive.setInverted(InvertType.InvertMotorOutput);
+    lDriveRear.setInverted(InvertType.InvertMotorOutput);
+    lDriveFront.setInverted(InvertType.InvertMotorOutput);
+
+    lDriveFront.follow(lDriveRear);
+    rDriveFront.follow(rDriveRear);
   }
 
   public void drive(double forwardPower, double hPower, double turnPower) {
     //Read the saftey switch. If switch is on (false) half the power (Default Reading for DIO port is true)
-    double y = (Robot.safteySwitch.get()) ? forwardPower : forwardPower * .5;
-    double x = (Robot.safteySwitch.get()) ? hPower : hPower * .5;
-    double rot = (Robot.safteySwitch.get()) ? turnPower : turnPower * .5;
+    double y = (Robot.safteySwitch.get()) ? forwardPower : forwardPower * .3;
+    double x = (Robot.safteySwitch.get()) ? hPower : hPower * .3;
+    double rot = (Robot.safteySwitch.get()) ? turnPower : turnPower * .3;
     //Calculate Motors
-    lDrive.set(ControlMode.PercentOutput, y + rot);
-    rDrive.set(ControlMode.PercentOutput, y - rot);
+    lDriveRear.set(ControlMode.PercentOutput, y - rot);
+    rDriveRear.set(ControlMode.PercentOutput, y + rot);
     hDrive.set(ControlMode.PercentOutput, x);
     
+  }
+
+  public void playFile(String name) {
+    ArrayList<TalonFX> motors = new ArrayList<TalonFX>();
+    motors.add(lDriveRear);
+    motors.add(rDriveRear);
+    /* Create the orchestra with the TalonFX instruments */
+    Orchestra orchestra = new Orchestra(motors);
+
+    orchestra.loadMusic(name);
+    orchestra.play();
   }
 
 
