@@ -53,7 +53,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     m_chooser.setDefaultOption("Rick Roll", new RickRoll());
+    m_chooser.addOption("Rick Roll 2", new RickRoll2());
     m_chooser.addOption("Imperial March", new ImperialMarch());
+    m_chooser.addOption("Harmony", new Harmony());
     SmartDashboard.putData("Auto Mode", m_chooser);
   }
 

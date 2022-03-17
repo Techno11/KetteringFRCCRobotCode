@@ -7,15 +7,15 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ImperialMarch extends Command {
-  public ImperialMarch() {
+public class RickRoll2 extends Command {
+  public RickRoll2() {
     requires(Robot.driveSubysystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.driveSubysystem.playFile("imperial2.chrp");
+    Robot.driveSubysystem.playFile("rickroll2.chrp");
   }
 
   // Called repeatedly when this Command is scheduled to run

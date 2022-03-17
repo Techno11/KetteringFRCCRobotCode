@@ -58,7 +58,9 @@ public class DriveSubysystem extends Subsystem {
 
   public void playFile(String name) {
     ArrayList<TalonFX> motors = new ArrayList<TalonFX>();
+    motors.add(lDriveFront);
     motors.add(lDriveRear);
+    motors.add(rDriveFront);
     motors.add(rDriveRear);
     /* Create the orchestra with the TalonFX instruments */
     Orchestra orchestra = new Orchestra(motors);
