@@ -28,17 +28,17 @@ public class TwoBallGyro extends SequentialCommandGroup {
       // Back away from wall
       new DriveTimed(ds, .6, 0, .5),
       // Turn 180
-      new TurnGyro(ds, gyro, .5, 145),
+      new TurnGyro(ds, gyro, .5, 155),
       // Lower Intake
       new LiftTimed(ms, -.4, .5),
       // Drive Forward and Suck
-      new DriveNSuck(ds, is, ms, -.3, 0, -1, -.2, 2),
+      new DriveNSuck(ds, is, ms, -.3, 0, -1, -.2, 1.5),
       // Raise Intake
       new LiftTimed(ms, .5, .6),
       // Turn 180
-      new TurnGyro(ds, gyro, -.5, 148),
+      new TurnGyro(ds, gyro, -.5, 165),
       // Drive Towards Wall
-      new DriveTimed(ds, -.6, 0, 1.3),
+      new DriveTimed(ds, -.6, 0, 1.5),
       // Drive Towards Wall, but slower
       new DriveTimed(ds, -.3, 0, .5),
       // Spit out ball

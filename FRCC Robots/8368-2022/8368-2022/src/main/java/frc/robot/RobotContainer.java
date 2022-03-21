@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -41,6 +43,9 @@ public class RobotContainer {
   // Gyro
   private final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
+  // Camera
+  private final UsbCamera mainCam = CameraServer.startAutomaticCapture();
+
   // A chooser for autonomous commands
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -57,6 +62,10 @@ public class RobotContainer {
 
     // Calibrate Gyro
     this.gyro.calibrate();
+
+    // Configure Camera Server
+    mainCam.setFPS(10);
+    mainCam.setResolution(360, 240);
   }
 
   private void configAutonModes() {
