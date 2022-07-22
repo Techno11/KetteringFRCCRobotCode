@@ -4,11 +4,12 @@
 
 package frc.robot.commands.AutonGroups;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutonCommands.DriveTimed;
 import frc.robot.commands.AutonCommands.IntakeTimed;
 import frc.robot.commands.AutonCommands.LiftTimed;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ManipSubsystem;
 
@@ -17,7 +18,7 @@ import frc.robot.subsystems.ManipSubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TwoBallTimed extends SequentialCommandGroup {
   /** Creates a new DropAndMoveBack. */
-  public TwoBallTimed(DriveSubsystem ds, ManipSubsystem ms, IntakeSubsystem is) {
+  public TwoBallTimed(Drivetrain ds, ManipSubsystem ms, IntakeSubsystem is, ADXRS450_Gyro gyro) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
@@ -30,7 +31,7 @@ public class TwoBallTimed extends SequentialCommandGroup {
       // Lower Intake
       new LiftTimed(ms, -.4, .5),
       // Drive Forward and Suck
-      new DriveNSuck(ds, is, ms, -.3, 0, -1, -.2, 2),
+      new DriveNSuck(ds, is, ms, gyro, -.3, 0, -1, -.2, 2),
       // Raise Intake
       new LiftTimed(ms, .4, .6),
       // Turn 180
@@ -38,7 +39,7 @@ public class TwoBallTimed extends SequentialCommandGroup {
       // Drive Towards Wall
       new DriveTimed(ds, -.6, 0, 1.5),
       // Spit out ball
-      new DriveNSuck(ds, is, ms, -.2, 0, 1, 0, 1),
+      new DriveNSuck(ds, is, ms, gyro, -.2, 0, 1, 0, 1),
       // Back away from wall
       new DriveTimed(ds, .6, 0, 1.5)
     );

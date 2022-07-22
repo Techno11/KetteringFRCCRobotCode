@@ -10,12 +10,12 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class DriveSubsystem extends SubsystemBase {
+public class Drivetrain extends SubsystemBase {
 
   private CANSparkMax left_rear_drive, left_front_drive, right_rear_drive, right_front_drive;
 
   /** Creates a new ExampleSubsystem. */
-  public DriveSubsystem() {
+  public Drivetrain() {
     left_rear_drive = new CANSparkMax(Constants.LEFT_REAR_DRIVE, MotorType.kBrushed);
     left_front_drive = new CANSparkMax(Constants.LEFT_FRONT_DRIVE, MotorType.kBrushed);
     right_rear_drive = new CANSparkMax(Constants.RIGHT_REAR_DRIVE, MotorType.kBrushed);

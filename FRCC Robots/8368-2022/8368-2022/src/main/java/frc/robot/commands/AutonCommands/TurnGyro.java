@@ -4,13 +4,13 @@
 
 package frc.robot.commands.AutonCommands;
 
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
 public class TurnGyro extends CommandBase {
-  private final DriveSubsystem m_subsystem;
+  private final Drivetrain m_subsystem;
   private final ADXRS450_Gyro gyro;
   private final double turnPower, degrees;
 
@@ -19,7 +19,7 @@ public class TurnGyro extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public TurnGyro(DriveSubsystem subsystem, ADXRS450_Gyro gyro, double turnPower, double degrees) {
+  public TurnGyro(double turnPower, double degrees, Drivetrain subsystem, ADXRS450_Gyro gyro) {
     m_subsystem = subsystem;
     this.gyro = gyro;
     this.degrees = degrees;

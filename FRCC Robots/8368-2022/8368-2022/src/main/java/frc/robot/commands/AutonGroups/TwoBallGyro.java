@@ -6,11 +6,12 @@ package frc.robot.commands.AutonGroups;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.AutonCommands.DriveGyroTimed;
 import frc.robot.commands.AutonCommands.DriveTimed;
 import frc.robot.commands.AutonCommands.IntakeTimed;
 import frc.robot.commands.AutonCommands.LiftTimed;
 import frc.robot.commands.AutonCommands.TurnGyro;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ManipSubsystem;
 
@@ -19,32 +20,32 @@ import frc.robot.subsystems.ManipSubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TwoBallGyro extends SequentialCommandGroup {
   /** Creates a new DropAndMoveBack. */
-  public TwoBallGyro(DriveSubsystem ds, ManipSubsystem ms, IntakeSubsystem is, ADXRS450_Gyro gyro) {
+  public TwoBallGyro(Drivetrain ds, ManipSubsystem ms, IntakeSubsystem is, ADXRS450_Gyro gyro) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       // First, run intake in reverse to score pre-load ball
       new IntakeTimed(is, 1, .8),
       // Back away from wall
-      new DriveTimed(ds, .6, 0, .5),
+      new DriveGyroTimed(.6, .5, ds, gyro),
       // Turn 180
-      new TurnGyro(ds, gyro, .5, 155),
+      new TurnGyro(.5, 155, ds, gyro),
       // Lower Intake
       new LiftTimed(ms, -.4, .5),
       // Drive Forward and Suck
-      new DriveNSuck(ds, is, ms, -.3, 0, -1, -.2, 1.5),
+      new DriveNSuck(ds, is, ms, gyro, -.3, 0, -1, -.2, 1.5),
       // Raise Intake
       new LiftTimed(ms, .5, .6),
       // Turn 180
-      new TurnGyro(ds, gyro, -.5, 165),
+      new TurnGyro( -.5, 165, ds, gyro),
       // Drive Towards Wall
-      new DriveTimed(ds, -.6, 0, 1.5),
+      new DriveGyroTimed(-.6, 1.5, ds, gyro),
       // Drive Towards Wall, but slower
-      new DriveTimed(ds, -.3, 0, .5),
+      new DriveGyroTimed(-.3, .5, ds, gyro),
       // Spit out ball
-      new DriveNSuck(ds, is, ms, -.2, 0, 1, 0, 1),
+      new DriveNSuck(ds, is, ms, gyro, -.2, 0, 1, 0, 1),
       // Back away from wall
-      new DriveTimed(ds, .6, 0, 1.5)
+      new DriveGyroTimed(.6, 1.5, ds, gyro)
     );
   }
 }

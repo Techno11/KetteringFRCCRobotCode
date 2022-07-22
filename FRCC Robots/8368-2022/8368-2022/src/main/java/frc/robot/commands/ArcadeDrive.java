@@ -5,13 +5,13 @@
 package frc.robot.commands;
 
 import frc.robot.Constants;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class DriveCommand extends CommandBase {
-  private final DriveSubsystem m_subsystem;
+public class ArcadeDrive extends CommandBase {
+  private final Drivetrain m_subsystem;
   private final Joystick driveJoystick;
 
   /**
@@ -19,7 +19,7 @@ public class DriveCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveCommand(DriveSubsystem subsystem, Joystick driveJoystick) {
+  public ArcadeDrive(Drivetrain subsystem, Joystick driveJoystick) {
     m_subsystem = subsystem;
     this.driveJoystick = driveJoystick;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -33,7 +33,7 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double yInput = driveJoystick.getRawAxis(Constants.LEFT_Y);
+    double yInput = driveJoystick.getRawAxis(Constants.LEFT_Y) * .75;
     double xInput = driveJoystick.getRawAxis(Constants.RIGHT_X) * .75; // Slow down turning speed
 
     // Send to subsystem

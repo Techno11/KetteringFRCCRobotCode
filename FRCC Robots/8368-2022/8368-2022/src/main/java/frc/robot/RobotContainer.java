@@ -13,13 +13,15 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.DriveCommand;
+import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.LiftCommand;
+import frc.robot.commands.AutonCommands.DriveGyroTimed;
 import frc.robot.commands.AutonGroups.DropAndMoveBack;
 import frc.robot.commands.AutonGroups.TwoBallGyro;
 import frc.robot.commands.AutonGroups.TwoBallTimed;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.commands.AutonGroups.TwoSecondSquare;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ManipSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -32,7 +34,7 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
+  private final Drivetrain m_driveSubsystem = new Drivetrain();
   private final ManipSubsystem m_manipSubsystem = new ManipSubsystem();
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
 
@@ -72,14 +74,19 @@ public class RobotContainer {
     // Add commands to the autonomous command chooser
     m_chooser.setDefaultOption("Drop and Drive Back (Center Starting Position)", new DropAndMoveBack(m_driveSubsystem, m_manipSubsystem, m_intakeSubsystem));
     m_chooser.addOption("Two Ball Gyro (Side Starting Positions)", new TwoBallGyro(m_driveSubsystem, m_manipSubsystem, m_intakeSubsystem, gyro));
-    m_chooser.addOption("Two Ball Timed (Less Reliable)", new TwoBallTimed(m_driveSubsystem, m_manipSubsystem, m_intakeSubsystem));
+    m_chooser.addOption("Two Ball Timed (Less Reliable)", new TwoBallTimed(m_driveSubsystem, m_manipSubsystem, m_intakeSubsystem, gyro));
+
+    // Java Camp Demonstrations
+    m_chooser.addOption("Kick Me! (Gyro Drive Straight 10 Seconds)", new DriveGyroTimed(.3, 10, m_driveSubsystem, gyro));
+    m_chooser.addOption("Gyro 2 Second Square", new TwoSecondSquare(m_driveSubsystem, gyro));
+  
 
     // Put the chooser on the dashboard
     SmartDashboard.putData("Autonomous Selector", m_chooser);
   }
 
   private void setDefaultCommands() {
-    m_driveSubsystem.setDefaultCommand(new DriveCommand(m_driveSubsystem, driverJoystick));
+    m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, driverJoystick));
     m_manipSubsystem.setDefaultCommand(new LiftCommand(m_manipSubsystem, auxJoystick));
     m_intakeSubsystem.setDefaultCommand(new IntakeCommand(m_intakeSubsystem, auxJoystick));
   }

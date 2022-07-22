@@ -7,7 +7,7 @@ package frc.robot.commands.AutonGroups;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutonCommands.DriveTimed;
 import frc.robot.commands.AutonCommands.IntakeTimed;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ManipSubsystem;
 
@@ -16,7 +16,7 @@ import frc.robot.subsystems.ManipSubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class DropAndMoveBack extends SequentialCommandGroup {
   /** Creates a new DropAndMoveBack. */
-  public DropAndMoveBack(DriveSubsystem ds, ManipSubsystem ms, IntakeSubsystem is) {
+  public DropAndMoveBack(Drivetrain ds, ManipSubsystem ms, IntakeSubsystem is) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
