@@ -1,0 +1,1077 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="20.05" TargetName="MainProgram" TargetType="Program" ContainsContext="true" Owner="Soren" ExportDate="Tue Jul 20 14:35:58 2021" ExportOptions="References DecoratedData Context Dependencies ForceProtectedEncoding AllProjDocTrans">
+<Controller Use="Context" Name="FRCFMS">
+<DataTypes Use="Context">
+</DataTypes>
+<Modules Use="Context">
+<Module Use="Reference" Name="Local">
+</Module>
+<Module Use="Reference" Name="Discrete_IO">
+</Module>
+<Module Use="Reference" Name="Blue_DS_Switch">
+</Module>
+<Module Use="Reference" Name="Blue_Driver_Station">
+</Module>
+<Module Use="Reference" Name="Red_DS_Switch">
+</Module>
+<Module Use="Reference" Name="Cargo_Ship">
+</Module>
+<Module Use="Reference" Name="Red_Driver_Station">
+</Module>
+</Modules>
+<Tags Use="Context">
+<Tag Name="Stack_Light_Orange" TagType="Alias" Radix="Decimal" AliasFor="Local:1:O.Data.3" ExternalAccess="Read/Write"/>
+<Tag Name="Stack_Buzzer" TagType="Alias" Radix="Decimal" AliasFor="Local:1:O.Data.5" ExternalAccess="Read/Write"/>
+<Tag Name="RedESTOP3Light" TagType="Alias" Radix="Decimal" AliasFor="Red_Driver_Station:O.Data.11" ExternalAccess="Read/Write"/>
+<Tag Name="RedESTOP2Light" TagType="Alias" Radix="Decimal" AliasFor="Red_Driver_Station:O.Data.13" ExternalAccess="Read/Write"/>
+<Tag Name="SL_B" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data>01</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="1"/>
+</Data>
+</Tag>
+<Tag Name="MBTU_MB_1xx" TagType="Base" DataType="BOOL" Dimensions="256" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data>7F 00 06 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</Data>
+<Data Format="Decorated">
+<Array DataType="BOOL" Dimensions="256" Radix="Decimal">
+<Element Index="[0]" Value="1"/>
+<Element Index="[1]" Value="1"/>
+<Element Index="[2]" Value="1"/>
+<Element Index="[3]" Value="1"/>
+<Element Index="[4]" Value="1"/>
+<Element Index="[5]" Value="1"/>
+<Element Index="[6]" Value="1"/>
+<Element Index="[7]" Value="0"/>
+<Element Index="[8]" Value="0"/>
+<Element Index="[9]" Value="0"/>
+<Element Index="[10]" Value="0"/>
+<Element Index="[11]" Value="0"/>
+<Element Index="[12]" Value="0"/>
+<Element Index="[13]" Value="0"/>
+<Element Index="[14]" Value="0"/>
+<Element Index="[15]" Value="0"/>
+<Element Index="[16]" Value="0"/>
+<Element Index="[17]" Value="1"/>
+<Element Index="[18]" Value="1"/>
+<Element Index="[19]" Value="0"/>
+<Element Index="[20]" Value="0"/>
+<Element Index="[21]" Value="0"/>
+<Element Index="[22]" Value="0"/>
+<Element Index="[23]" Value="0"/>
+<Element Index="[24]" Value="0"/>
+<Element Index="[25]" Value="0"/>
+<Element Index="[26]" Value="0"/>
+<Element Index="[27]" Value="0"/>
+<Element Index="[28]" Value="0"/>
+<Element Index="[29]" Value="0"/>
+<Element Index="[30]" Value="0"/>
+<Element Index="[31]" Value="0"/>
+<Element Index="[32]" Value="0"/>
+<Element Index="[33]" Value="0"/>
+<Element Index="[34]" Value="0"/>
+<Element Index="[35]" Value="0"/>
+<Element Index="[36]" Value="0"/>
+<Element Index="[37]" Value="0"/>
+<Element Index="[38]" Value="0"/>
+<Element Index="[39]" Value="0"/>
+<Element Index="[40]" Value="0"/>
+<Element Index="[41]" Value="0"/>
+<Element Index="[42]" Value="0"/>
+<Element Index="[43]" Value="0"/>
+<Element Index="[44]" Value="0"/>
+<Element Index="[45]" Value="0"/>
+<Element Index="[46]" Value="0"/>
+<Element Index="[47]" Value="0"/>
+<Element Index="[48]" Value="0"/>
+<Element Index="[49]" Value="0"/>
+<Element Index="[50]" Value="0"/>
+<Element Index="[51]" Value="0"/>
+<Element Index="[52]" Value="0"/>
+<Element Index="[53]" Value="0"/>
+<Element Index="[54]" Value="0"/>
+<Element Index="[55]" Value="0"/>
+<Element Index="[56]" Value="0"/>
+<Element Index="[57]" Value="0"/>
+<Element Index="[58]" Value="0"/>
+<Element Index="[59]" Value="0"/>
+<Element Index="[60]" Value="0"/>
+<Element Index="[61]" Value="0"/>
+<Element Index="[62]" Value="0"/>
+<Element Index="[63]" Value="0"/>
+<Element Index="[64]" Value="0"/>
+<Element Index="[65]" Value="0"/>
+<Element Index="[66]" Value="0"/>
+<Element Index="[67]" Value="0"/>
+<Element Index="[68]" Value="0"/>
+<Element Index="[69]" Value="0"/>
+<Element Index="[70]" Value="0"/>
+<Element Index="[71]" Value="0"/>
+<Element Index="[72]" Value="0"/>
+<Element Index="[73]" Value="0"/>
+<Element Index="[74]" Value="0"/>
+<Element Index="[75]" Value="0"/>
+<Element Index="[76]" Value="0"/>
+<Element Index="[77]" Value="0"/>
+<Element Index="[78]" Value="0"/>
+<Element Index="[79]" Value="0"/>
+<Element Index="[80]" Value="0"/>
+<Element Index="[81]" Value="0"/>
+<Element Index="[82]" Value="0"/>
+<Element Index="[83]" Value="0"/>
+<Element Index="[84]" Value="0"/>
+<Element Index="[85]" Value="0"/>
+<Element Index="[86]" Value="0"/>
+<Element Index="[87]" Value="0"/>
+<Element Index="[88]" Value="0"/>
+<Element Index="[89]" Value="0"/>
+<Element Index="[90]" Value="0"/>
+<Element Index="[91]" Value="0"/>
+<Element Index="[92]" Value="0"/>
+<Element Index="[93]" Value="0"/>
+<Element Index="[94]" Value="0"/>
+<Element Index="[95]" Value="0"/>
+<Element Index="[96]" Value="0"/>
+<Element Index="[97]" Value="0"/>
+<Element Index="[98]" Value="0"/>
+<Element Index="[99]" Value="0"/>
+<Element Index="[100]" Value="0"/>
+<Element Index="[101]" Value="0"/>
+<Element Index="[102]" Value="0"/>
+<Element Index="[103]" Value="0"/>
+<Element Index="[104]" Value="0"/>
+<Element Index="[105]" Value="0"/>
+<Element Index="[106]" Value="0"/>
+<Element Index="[107]" Value="0"/>
+<Element Index="[108]" Value="0"/>
+<Element Index="[109]" Value="0"/>
+<Element Index="[110]" Value="0"/>
+<Element Index="[111]" Value="0"/>
+<Element Index="[112]" Value="0"/>
+<Element Index="[113]" Value="0"/>
+<Element Index="[114]" Value="0"/>
+<Element Index="[115]" Value="0"/>
+<Element Index="[116]" Value="0"/>
+<Element Index="[117]" Value="0"/>
+<Element Index="[118]" Value="0"/>
+<Element Index="[119]" Value="0"/>
+<Element Index="[120]" Value="0"/>
+<Element Index="[121]" Value="0"/>
+<Element Index="[122]" Value="0"/>
+<Element Index="[123]" Value="0"/>
+<Element Index="[124]" Value="0"/>
+<Element Index="[125]" Value="0"/>
+<Element Index="[126]" Value="0"/>
+<Element Index="[127]" Value="0"/>
+<Element Index="[128]" Value="0"/>
+<Element Index="[129]" Value="0"/>
+<Element Index="[130]" Value="0"/>
+<Element Index="[131]" Value="0"/>
+<Element Index="[132]" Value="0"/>
+<Element Index="[133]" Value="0"/>
+<Element Index="[134]" Value="0"/>
+<Element Index="[135]" Value="0"/>
+<Element Index="[136]" Value="0"/>
+<Element Index="[137]" Value="0"/>
+<Element Index="[138]" Value="0"/>
+<Element Index="[139]" Value="0"/>
+<Element Index="[140]" Value="0"/>
+<Element Index="[141]" Value="0"/>
+<Element Index="[142]" Value="0"/>
+<Element Index="[143]" Value="0"/>
+<Element Index="[144]" Value="0"/>
+<Element Index="[145]" Value="0"/>
+<Element Index="[146]" Value="0"/>
+<Element Index="[147]" Value="0"/>
+<Element Index="[148]" Value="0"/>
+<Element Index="[149]" Value="0"/>
+<Element Index="[150]" Value="0"/>
+<Element Index="[151]" Value="0"/>
+<Element Index="[152]" Value="0"/>
+<Element Index="[153]" Value="0"/>
+<Element Index="[154]" Value="0"/>
+<Element Index="[155]" Value="0"/>
+<Element Index="[156]" Value="0"/>
+<Element Index="[157]" Value="0"/>
+<Element Index="[158]" Value="0"/>
+<Element Index="[159]" Value="0"/>
+<Element Index="[160]" Value="0"/>
+<Element Index="[161]" Value="0"/>
+<Element Index="[162]" Value="0"/>
+<Element Index="[163]" Value="0"/>
+<Element Index="[164]" Value="0"/>
+<Element Index="[165]" Value="0"/>
+<Element Index="[166]" Value="0"/>
+<Element Index="[167]" Value="0"/>
+<Element Index="[168]" Value="0"/>
+<Element Index="[169]" Value="0"/>
+<Element Index="[170]" Value="0"/>
+<Element Index="[171]" Value="0"/>
+<Element Index="[172]" Value="0"/>
+<Element Index="[173]" Value="0"/>
+<Element Index="[174]" Value="0"/>
+<Element Index="[175]" Value="0"/>
+<Element Index="[176]" Value="0"/>
+<Element Index="[177]" Value="0"/>
+<Element Index="[178]" Value="0"/>
+<Element Index="[179]" Value="0"/>
+<Element Index="[180]" Value="0"/>
+<Element Index="[181]" Value="0"/>
+<Element Index="[182]" Value="0"/>
+<Element Index="[183]" Value="0"/>
+<Element Index="[184]" Value="0"/>
+<Element Index="[185]" Value="0"/>
+<Element Index="[186]" Value="0"/>
+<Element Index="[187]" Value="0"/>
+<Element Index="[188]" Value="0"/>
+<Element Index="[189]" Value="0"/>
+<Element Index="[190]" Value="0"/>
+<Element Index="[191]" Value="0"/>
+<Element Index="[192]" Value="0"/>
+<Element Index="[193]" Value="0"/>
+<Element Index="[194]" Value="0"/>
+<Element Index="[195]" Value="0"/>
+<Element Index="[196]" Value="0"/>
+<Element Index="[197]" Value="0"/>
+<Element Index="[198]" Value="0"/>
+<Element Index="[199]" Value="0"/>
+<Element Index="[200]" Value="0"/>
+<Element Index="[201]" Value="0"/>
+<Element Index="[202]" Value="0"/>
+<Element Index="[203]" Value="0"/>
+<Element Index="[204]" Value="0"/>
+<Element Index="[205]" Value="0"/>
+<Element Index="[206]" Value="0"/>
+<Element Index="[207]" Value="0"/>
+<Element Index="[208]" Value="0"/>
+<Element Index="[209]" Value="0"/>
+<Element Index="[210]" Value="0"/>
+<Element Index="[211]" Value="0"/>
+<Element Index="[212]" Value="0"/>
+<Element Index="[213]" Value="0"/>
+<Element Index="[214]" Value="0"/>
+<Element Index="[215]" Value="0"/>
+<Element Index="[216]" Value="0"/>
+<Element Index="[217]" Value="0"/>
+<Element Index="[218]" Value="0"/>
+<Element Index="[219]" Value="0"/>
+<Element Index="[220]" Value="0"/>
+<Element Index="[221]" Value="0"/>
+<Element Index="[222]" Value="0"/>
+<Element Index="[223]" Value="0"/>
+<Element Index="[224]" Value="0"/>
+<Element Index="[225]" Value="0"/>
+<Element Index="[226]" Value="0"/>
+<Element Index="[227]" Value="0"/>
+<Element Index="[228]" Value="0"/>
+<Element Index="[229]" Value="0"/>
+<Element Index="[230]" Value="0"/>
+<Element Index="[231]" Value="0"/>
+<Element Index="[232]" Value="0"/>
+<Element Index="[233]" Value="0"/>
+<Element Index="[234]" Value="0"/>
+<Element Index="[235]" Value="0"/>
+<Element Index="[236]" Value="0"/>
+<Element Index="[237]" Value="0"/>
+<Element Index="[238]" Value="0"/>
+<Element Index="[239]" Value="0"/>
+<Element Index="[240]" Value="0"/>
+<Element Index="[241]" Value="0"/>
+<Element Index="[242]" Value="0"/>
+<Element Index="[243]" Value="0"/>
+<Element Index="[244]" Value="0"/>
+<Element Index="[245]" Value="0"/>
+<Element Index="[246]" Value="0"/>
+<Element Index="[247]" Value="0"/>
+<Element Index="[248]" Value="0"/>
+<Element Index="[249]" Value="0"/>
+<Element Index="[250]" Value="0"/>
+<Element Index="[251]" Value="0"/>
+<Element Index="[252]" Value="0"/>
+<Element Index="[253]" Value="0"/>
+<Element Index="[254]" Value="0"/>
+<Element Index="[255]" Value="0"/>
+</Array>
+</Data>
+</Tag>
+<Tag Name="SL_1" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data>00</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Latch_reset" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Data>5A BD 08 A0 32 00 00 00 32 00 00 00</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="50"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="50"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="1"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="1"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="SL_3" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data>00</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Stack_Light_Green" TagType="Alias" Radix="Decimal" AliasFor="Local:1:O.Data.4" ExternalAccess="Read/Write"/>
+<Tag Name="Watchdog" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data>01</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="1"/>
+</Data>
+</Tag>
+<Tag Name="EStop_Light_flasher" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Data>27 2E 08 00 EE 02 00 00 00 00 00 00</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="750"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="MatchStartONS" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data>00</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="RedESTOP1" TagType="Alias" Radix="Decimal" AliasFor="Red_Driver_Station:I.Data.14" ExternalAccess="Read/Write"/>
+<Tag Name="FieldESTOPButton" TagType="Alias" Radix="Decimal" AliasFor="Local:1:I.Data.0" ExternalAccess="Read/Write"/>
+<Tag Name="RedESTOP3" TagType="Alias" Radix="Decimal" AliasFor="Red_Driver_Station:I.Data.10" ExternalAccess="Read/Write"/>
+<Tag Name="Stack_Buzzer_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Data>5A BD 08 A0 B6 03 00 00 B6 03 00 00</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="950"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="950"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="1"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="1"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Sand_Storm_T2" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Data>00 00 00 00 D0 07 00 00 00 00 00 00</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="2000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="BlueESTOP1" TagType="Alias" Radix="Decimal" AliasFor="Blue_Driver_Station:I.Data.14" ExternalAccess="Read/Write"/>
+<Tag Name="Sand_Storm_T1" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Data>00 00 00 00 D0 07 00 00 00 00 00 00</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="2000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="BlueESTOP2Light" TagType="Alias" Radix="Decimal" AliasFor="Blue_Driver_Station:O.Data.13" ExternalAccess="Read/Write"/>
+<Tag Name="RedESTOP1Light" TagType="Alias" Radix="Decimal" AliasFor="Red_Driver_Station:O.Data.15" ExternalAccess="Read/Write"/>
+<Tag Name="MatchSYNC" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Data>54 BD 08 C0 E8 03 00 00 A0 03 00 00</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="1000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="928"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="1"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="1"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="MBTU_MB_0xx" TagType="Base" DataType="BOOL" Dimensions="256" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data>45 00 00 00 00 00 00 00 00 00 00 00 01 8C 81 10 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</Data>
+<Data Format="Decorated">
+<Array DataType="BOOL" Dimensions="256" Radix="Decimal">
+<Element Index="[0]" Value="1"/>
+<Element Index="[1]" Value="0"/>
+<Element Index="[2]" Value="1"/>
+<Element Index="[3]" Value="0"/>
+<Element Index="[4]" Value="0"/>
+<Element Index="[5]" Value="0"/>
+<Element Index="[6]" Value="1"/>
+<Element Index="[7]" Value="0"/>
+<Element Index="[8]" Value="0"/>
+<Element Index="[9]" Value="0"/>
+<Element Index="[10]" Value="0"/>
+<Element Index="[11]" Value="0"/>
+<Element Index="[12]" Value="0"/>
+<Element Index="[13]" Value="0"/>
+<Element Index="[14]" Value="0"/>
+<Element Index="[15]" Value="0"/>
+<Element Index="[16]" Value="0"/>
+<Element Index="[17]" Value="0"/>
+<Element Index="[18]" Value="0"/>
+<Element Index="[19]" Value="0"/>
+<Element Index="[20]" Value="0"/>
+<Element Index="[21]" Value="0"/>
+<Element Index="[22]" Value="0"/>
+<Element Index="[23]" Value="0"/>
+<Element Index="[24]" Value="0"/>
+<Element Index="[25]" Value="0"/>
+<Element Index="[26]" Value="0"/>
+<Element Index="[27]" Value="0"/>
+<Element Index="[28]" Value="0"/>
+<Element Index="[29]" Value="0"/>
+<Element Index="[30]" Value="0"/>
+<Element Index="[31]" Value="0"/>
+<Element Index="[32]" Value="0"/>
+<Element Index="[33]" Value="0"/>
+<Element Index="[34]" Value="0"/>
+<Element Index="[35]" Value="0"/>
+<Element Index="[36]" Value="0"/>
+<Element Index="[37]" Value="0"/>
+<Element Index="[38]" Value="0"/>
+<Element Index="[39]" Value="0"/>
+<Element Index="[40]" Value="0"/>
+<Element Index="[41]" Value="0"/>
+<Element Index="[42]" Value="0"/>
+<Element Index="[43]" Value="0"/>
+<Element Index="[44]" Value="0"/>
+<Element Index="[45]" Value="0"/>
+<Element Index="[46]" Value="0"/>
+<Element Index="[47]" Value="0"/>
+<Element Index="[48]" Value="0"/>
+<Element Index="[49]" Value="0"/>
+<Element Index="[50]" Value="0"/>
+<Element Index="[51]" Value="0"/>
+<Element Index="[52]" Value="0"/>
+<Element Index="[53]" Value="0"/>
+<Element Index="[54]" Value="0"/>
+<Element Index="[55]" Value="0"/>
+<Element Index="[56]" Value="0"/>
+<Element Index="[57]" Value="0"/>
+<Element Index="[58]" Value="0"/>
+<Element Index="[59]" Value="0"/>
+<Element Index="[60]" Value="0"/>
+<Element Index="[61]" Value="0"/>
+<Element Index="[62]" Value="0"/>
+<Element Index="[63]" Value="0"/>
+<Element Index="[64]" Value="0"/>
+<Element Index="[65]" Value="0"/>
+<Element Index="[66]" Value="0"/>
+<Element Index="[67]" Value="0"/>
+<Element Index="[68]" Value="0"/>
+<Element Index="[69]" Value="0"/>
+<Element Index="[70]" Value="0"/>
+<Element Index="[71]" Value="0"/>
+<Element Index="[72]" Value="0"/>
+<Element Index="[73]" Value="0"/>
+<Element Index="[74]" Value="0"/>
+<Element Index="[75]" Value="0"/>
+<Element Index="[76]" Value="0"/>
+<Element Index="[77]" Value="0"/>
+<Element Index="[78]" Value="0"/>
+<Element Index="[79]" Value="0"/>
+<Element Index="[80]" Value="0"/>
+<Element Index="[81]" Value="0"/>
+<Element Index="[82]" Value="0"/>
+<Element Index="[83]" Value="0"/>
+<Element Index="[84]" Value="0"/>
+<Element Index="[85]" Value="0"/>
+<Element Index="[86]" Value="0"/>
+<Element Index="[87]" Value="0"/>
+<Element Index="[88]" Value="0"/>
+<Element Index="[89]" Value="0"/>
+<Element Index="[90]" Value="0"/>
+<Element Index="[91]" Value="0"/>
+<Element Index="[92]" Value="0"/>
+<Element Index="[93]" Value="0"/>
+<Element Index="[94]" Value="0"/>
+<Element Index="[95]" Value="0"/>
+<Element Index="[96]" Value="1"/>
+<Element Index="[97]" Value="0"/>
+<Element Index="[98]" Value="0"/>
+<Element Index="[99]" Value="0"/>
+<Element Index="[100]" Value="0"/>
+<Element Index="[101]" Value="0"/>
+<Element Index="[102]" Value="0"/>
+<Element Index="[103]" Value="0"/>
+<Element Index="[104]" Value="0"/>
+<Element Index="[105]" Value="0"/>
+<Element Index="[106]" Value="1"/>
+<Element Index="[107]" Value="1"/>
+<Element Index="[108]" Value="0"/>
+<Element Index="[109]" Value="0"/>
+<Element Index="[110]" Value="0"/>
+<Element Index="[111]" Value="1"/>
+<Element Index="[112]" Value="1"/>
+<Element Index="[113]" Value="0"/>
+<Element Index="[114]" Value="0"/>
+<Element Index="[115]" Value="0"/>
+<Element Index="[116]" Value="0"/>
+<Element Index="[117]" Value="0"/>
+<Element Index="[118]" Value="0"/>
+<Element Index="[119]" Value="1"/>
+<Element Index="[120]" Value="0"/>
+<Element Index="[121]" Value="0"/>
+<Element Index="[122]" Value="0"/>
+<Element Index="[123]" Value="0"/>
+<Element Index="[124]" Value="1"/>
+<Element Index="[125]" Value="0"/>
+<Element Index="[126]" Value="0"/>
+<Element Index="[127]" Value="0"/>
+<Element Index="[128]" Value="0"/>
+<Element Index="[129]" Value="0"/>
+<Element Index="[130]" Value="0"/>
+<Element Index="[131]" Value="0"/>
+<Element Index="[132]" Value="0"/>
+<Element Index="[133]" Value="0"/>
+<Element Index="[134]" Value="0"/>
+<Element Index="[135]" Value="0"/>
+<Element Index="[136]" Value="0"/>
+<Element Index="[137]" Value="0"/>
+<Element Index="[138]" Value="0"/>
+<Element Index="[139]" Value="0"/>
+<Element Index="[140]" Value="0"/>
+<Element Index="[141]" Value="0"/>
+<Element Index="[142]" Value="0"/>
+<Element Index="[143]" Value="0"/>
+<Element Index="[144]" Value="0"/>
+<Element Index="[145]" Value="0"/>
+<Element Index="[146]" Value="0"/>
+<Element Index="[147]" Value="0"/>
+<Element Index="[148]" Value="0"/>
+<Element Index="[149]" Value="0"/>
+<Element Index="[150]" Value="0"/>
+<Element Index="[151]" Value="0"/>
+<Element Index="[152]" Value="0"/>
+<Element Index="[153]" Value="0"/>
+<Element Index="[154]" Value="0"/>
+<Element Index="[155]" Value="0"/>
+<Element Index="[156]" Value="0"/>
+<Element Index="[157]" Value="0"/>
+<Element Index="[158]" Value="0"/>
+<Element Index="[159]" Value="0"/>
+<Element Index="[160]" Value="0"/>
+<Element Index="[161]" Value="0"/>
+<Element Index="[162]" Value="0"/>
+<Element Index="[163]" Value="0"/>
+<Element Index="[164]" Value="0"/>
+<Element Index="[165]" Value="0"/>
+<Element Index="[166]" Value="0"/>
+<Element Index="[167]" Value="0"/>
+<Element Index="[168]" Value="0"/>
+<Element Index="[169]" Value="0"/>
+<Element Index="[170]" Value="0"/>
+<Element Index="[171]" Value="0"/>
+<Element Index="[172]" Value="0"/>
+<Element Index="[173]" Value="0"/>
+<Element Index="[174]" Value="0"/>
+<Element Index="[175]" Value="0"/>
+<Element Index="[176]" Value="0"/>
+<Element Index="[177]" Value="0"/>
+<Element Index="[178]" Value="0"/>
+<Element Index="[179]" Value="0"/>
+<Element Index="[180]" Value="0"/>
+<Element Index="[181]" Value="0"/>
+<Element Index="[182]" Value="0"/>
+<Element Index="[183]" Value="0"/>
+<Element Index="[184]" Value="0"/>
+<Element Index="[185]" Value="0"/>
+<Element Index="[186]" Value="0"/>
+<Element Index="[187]" Value="0"/>
+<Element Index="[188]" Value="0"/>
+<Element Index="[189]" Value="0"/>
+<Element Index="[190]" Value="0"/>
+<Element Index="[191]" Value="0"/>
+<Element Index="[192]" Value="0"/>
+<Element Index="[193]" Value="0"/>
+<Element Index="[194]" Value="0"/>
+<Element Index="[195]" Value="0"/>
+<Element Index="[196]" Value="0"/>
+<Element Index="[197]" Value="0"/>
+<Element Index="[198]" Value="0"/>
+<Element Index="[199]" Value="0"/>
+<Element Index="[200]" Value="0"/>
+<Element Index="[201]" Value="0"/>
+<Element Index="[202]" Value="0"/>
+<Element Index="[203]" Value="0"/>
+<Element Index="[204]" Value="0"/>
+<Element Index="[205]" Value="0"/>
+<Element Index="[206]" Value="0"/>
+<Element Index="[207]" Value="0"/>
+<Element Index="[208]" Value="0"/>
+<Element Index="[209]" Value="0"/>
+<Element Index="[210]" Value="0"/>
+<Element Index="[211]" Value="0"/>
+<Element Index="[212]" Value="0"/>
+<Element Index="[213]" Value="0"/>
+<Element Index="[214]" Value="0"/>
+<Element Index="[215]" Value="0"/>
+<Element Index="[216]" Value="0"/>
+<Element Index="[217]" Value="0"/>
+<Element Index="[218]" Value="0"/>
+<Element Index="[219]" Value="0"/>
+<Element Index="[220]" Value="0"/>
+<Element Index="[221]" Value="0"/>
+<Element Index="[222]" Value="0"/>
+<Element Index="[223]" Value="0"/>
+<Element Index="[224]" Value="0"/>
+<Element Index="[225]" Value="0"/>
+<Element Index="[226]" Value="0"/>
+<Element Index="[227]" Value="0"/>
+<Element Index="[228]" Value="0"/>
+<Element Index="[229]" Value="0"/>
+<Element Index="[230]" Value="0"/>
+<Element Index="[231]" Value="0"/>
+<Element Index="[232]" Value="0"/>
+<Element Index="[233]" Value="0"/>
+<Element Index="[234]" Value="0"/>
+<Element Index="[235]" Value="0"/>
+<Element Index="[236]" Value="0"/>
+<Element Index="[237]" Value="0"/>
+<Element Index="[238]" Value="0"/>
+<Element Index="[239]" Value="0"/>
+<Element Index="[240]" Value="0"/>
+<Element Index="[241]" Value="0"/>
+<Element Index="[242]" Value="0"/>
+<Element Index="[243]" Value="0"/>
+<Element Index="[244]" Value="0"/>
+<Element Index="[245]" Value="0"/>
+<Element Index="[246]" Value="0"/>
+<Element Index="[247]" Value="0"/>
+<Element Index="[248]" Value="0"/>
+<Element Index="[249]" Value="0"/>
+<Element Index="[250]" Value="0"/>
+<Element Index="[251]" Value="0"/>
+<Element Index="[252]" Value="0"/>
+<Element Index="[253]" Value="0"/>
+<Element Index="[254]" Value="0"/>
+<Element Index="[255]" Value="0"/>
+</Array>
+</Data>
+</Tag>
+<Tag Name="BlueESTOP2" TagType="Alias" Radix="Decimal" AliasFor="Blue_Driver_Station:I.Data.12" ExternalAccess="Read/Write"/>
+<Tag Name="Stack_Light_Red" TagType="Alias" Radix="Decimal" AliasFor="Local:1:O.Data.2" ExternalAccess="Read/Write"/>
+<Tag Name="LostComm" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Data>B4 B9 08 A0 88 13 00 00 00 00 00 00</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="5000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="1"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="1"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="BlueESTOP1Light" TagType="Alias" Radix="Decimal" AliasFor="Blue_Driver_Station:O.Data.15" ExternalAccess="Read/Write"/>
+<Tag Name="FieldESTOP" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data>01</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="1"/>
+</Data>
+</Tag>
+<Tag Name="Field_Reset_Green" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data>00</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="SL_2" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data>00</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="BlueESTOP3Light" TagType="Alias" Radix="Decimal" AliasFor="Blue_Driver_Station:O.Data.11" ExternalAccess="Read/Write"/>
+<Tag Name="BlueESTOP3" TagType="Alias" Radix="Decimal" AliasFor="Blue_Driver_Station:I.Data.10" ExternalAccess="Read/Write"/>
+<Tag Name="Stack_Light_Blue" TagType="Alias" Radix="Decimal" AliasFor="Local:1:O.Data.1" ExternalAccess="Read/Write"/>
+<Tag Name="FieldESTOPLight" TagType="Alias" Radix="Decimal" AliasFor="Local:1:O.Data.0" ExternalAccess="Read/Write"/>
+<Tag Name="RedESTOP2" TagType="Alias" Radix="Decimal" AliasFor="Red_Driver_Station:I.Data.12" ExternalAccess="Read/Write"/>
+<Tag Name="MatchStart" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data>00</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+</Tags>
+<Programs Use="Context">
+<Program Use="Target" Name="MainProgram" TestEdits="false" MainRoutineName="JSR" Disabled="false">
+<Tags/>
+<Routines>
+<Routine Name="ESTOP" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Text>
+<![CDATA[XIO(FieldESTOP)OTE(FieldESTOPLight);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Text>
+<![CDATA[XIO(RedESTOP1)OTE(RedESTOP1Light);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Text>
+<![CDATA[XIO(RedESTOP2)OTE(RedESTOP2Light);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Text>
+<![CDATA[XIO(RedESTOP3)OTE(RedESTOP3Light);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Text>
+<![CDATA[XIO(BlueESTOP1)OTE(BlueESTOP1Light);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Text>
+<![CDATA[XIO(BlueESTOP2)OTE(BlueESTOP2Light);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Text>
+<![CDATA[XIO(BlueESTOP3)OTE(BlueESTOP3Light);]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Text>
+<![CDATA[XIC(FieldESTOPButton)XIC(LostComm.DN)OTE(FieldESTOP);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Text>
+<![CDATA[XIC(Watchdog)TOF(LostComm,?,?);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="JSR" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Text>
+<![CDATA[JSR(Match_Reset,0);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Text>
+<![CDATA[JSR(Tag_Converter,0);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Text>
+<![CDATA[JSR(ESTOP,0);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Text>
+<![CDATA[JSR(Stack_Light,0);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Match_Reset" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Text>
+<![CDATA[XIC(MatchStart)ONS(MatchStartONS)RES(Latch_reset);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Text>
+<![CDATA[TON(Latch_reset,?,?);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Text>
+<![CDATA[XIC(Field_Reset_Green)OTE(Red_Driver_Station:O.Data.1);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Text>
+<![CDATA[XIC(Field_Reset_Green)OTE(Red_Driver_Station:O.Data.7);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Text>
+<![CDATA[XIC(Field_Reset_Green)OTE(Blue_Driver_Station:O.Data.1);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Text>
+<![CDATA[XIC(Field_Reset_Green)OTE(Blue_Driver_Station:O.Data.7);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Text>
+<![CDATA[XIC(Field_Reset_Green)OTE(Blue_Driver_Station:O.Data.2);]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Text>
+<![CDATA[XIC(Field_Reset_Green)OTE(Blue_Driver_Station:O.Data.3);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Text>
+<![CDATA[XIC(Field_Reset_Green)OTE(Red_Driver_Station:O.Data.2);]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Text>
+<![CDATA[XIC(Field_Reset_Green)OTE(Red_Driver_Station:O.Data.3);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Stack_Light" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Text>
+<![CDATA[XIO(FieldESTOPButton)XIO(EStop_Light_flasher.DN)TON(EStop_Light_flasher,?,?);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Text>
+<![CDATA[[LEQ(EStop_Light_flasher.ACC,250) XIO(FieldESTOPButton) ,XIC(FieldESTOPButton) XIO(FieldESTOP) ,XIC(FieldESTOP) XIC(SL_1) XIC(FieldESTOPButton) ]OTE(Stack_Light_Orange);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Text>
+<![CDATA[[LEQ(EStop_Light_flasher.ACC,500) GRT(EStop_Light_flasher.ACC,250) XIO(FieldESTOPButton) ,XIC(SL_2) XIC(FieldESTOPButton) ]OTE(Stack_Light_Red);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Text>
+<![CDATA[[GRT(EStop_Light_flasher.ACC,500) XIO(FieldESTOPButton) ,XIC(SL_3) XIC(FieldESTOPButton) ]OTE(Stack_Light_Blue);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Text>
+<![CDATA[XIC(SL_B)XIO(Stack_Buzzer_Timer.DN)XIC(FieldESTOP)OTE(Stack_Buzzer);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Text>
+<![CDATA[XIC(SL_B)XIC(FieldESTOP)TON(Stack_Buzzer_Timer,?,?);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Tag_Converter" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Text>
+<![CDATA[XIC(FieldESTOP)OTE(MBTU_MB_1xx[0]);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[0])[OTE(Watchdog) ,TON(MatchSYNC,?,?) ,XIC(MatchSYNC.DN) OTU(MBTU_MB_0xx[00]) ];]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[1])OTE(MatchStart);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[2])XIC(FieldESTOPButton)XIC(FieldESTOP)OTE(Stack_Light_Green);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[3])OTE(SL_1);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[4])OTE(SL_2);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[5])OTE(SL_3);]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[6])OTE(SL_B);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[7])OTE(Field_Reset_Green);]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[8])XIC(FieldESTOPButton)XIC(FieldESTOP)OTE(Cargo_Ship:O.Data.0);]]>
+</Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[8])XIC(FieldESTOPButton)XIC(FieldESTOP)OTE(Cargo_Ship:O.Data.1);]]>
+</Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[9])XIC(FieldESTOPButton)XIC(FieldESTOP)OTE(Cargo_Ship:O.Data.2);]]>
+</Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[9])XIC(FieldESTOPButton)XIC(FieldESTOP)OTE(Cargo_Ship:O.Data.3);]]>
+</Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[10])XIC(FieldESTOPButton)XIC(FieldESTOP)OTE(Cargo_Ship:O.Data.15);]]>
+</Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[10])XIC(FieldESTOPButton)XIC(FieldESTOP)OTE(Cargo_Ship:O.Data.14);]]>
+</Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[11])XIC(FieldESTOPButton)XIC(FieldESTOP)OTE(Cargo_Ship:O.Data.13);]]>
+</Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[11])XIC(FieldESTOPButton)XIC(FieldESTOP)OTE(Cargo_Ship:O.Data.12);]]>
+</Text>
+</Rung>
+<Rung Number="17" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[12])XIC(FieldESTOPButton)XIC(FieldESTOP)XIO(Sand_Storm_T1.DN)OTE(Red_Driver_Station:O.Data.9);]]>
+</Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[12])XIC(FieldESTOPButton)XIC(FieldESTOP)XIO(Sand_Storm_T1.DN)OTE(Red_Driver_Station:O.Data.8);]]>
+</Text>
+</Rung>
+<Rung Number="19" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[12])XIC(FieldESTOP)TON(Sand_Storm_T1,?,?);]]>
+</Text>
+</Rung>
+<Rung Number="20" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[13])XIC(FieldESTOPButton)XIC(FieldESTOP)XIO(Sand_Storm_T2.DN)OTE(Blue_Driver_Station:O.Data.9);]]>
+</Text>
+</Rung>
+<Rung Number="21" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[13])XIC(FieldESTOPButton)XIC(FieldESTOP)XIO(Sand_Storm_T2.DN)OTE(Blue_Driver_Station:O.Data.8);]]>
+</Text>
+</Rung>
+<Rung Number="22" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[12])XIC(FieldESTOP)TON(Sand_Storm_T2,?,?);]]>
+</Text>
+</Rung>
+<Rung Number="23" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[14])OTE(Red_Driver_Station:O.Data.0);]]>
+</Text>
+</Rung>
+<Rung Number="24" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[15])OTE(Red_Driver_Station:O.Data.6);]]>
+</Text>
+</Rung>
+<Rung Number="25" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[16])OTE(Blue_Driver_Station:O.Data.6);]]>
+</Text>
+</Rung>
+<Rung Number="26" Type="N">
+<Text>
+<![CDATA[XIC(MBTU_MB_0xx[17])OTE(Blue_Driver_Station:O.Data.0);]]>
+</Text>
+</Rung>
+<Rung Number="27" Type="N">
+<Text>
+<![CDATA[XIC(RedESTOP1)OTE(MBTU_MB_1xx[1]);]]>
+</Text>
+</Rung>
+<Rung Number="28" Type="N">
+<Text>
+<![CDATA[XIC(RedESTOP2)OTE(MBTU_MB_1xx[2]);]]>
+</Text>
+</Rung>
+<Rung Number="29" Type="N">
+<Text>
+<![CDATA[XIC(RedESTOP3)OTE(MBTU_MB_1xx[3]);]]>
+</Text>
+</Rung>
+<Rung Number="30" Type="N">
+<Text>
+<![CDATA[XIC(BlueESTOP1)OTE(MBTU_MB_1xx[4]);]]>
+</Text>
+</Rung>
+<Rung Number="31" Type="N">
+<Text>
+<![CDATA[XIC(BlueESTOP2)OTE(MBTU_MB_1xx[5]);]]>
+</Text>
+</Rung>
+<Rung Number="32" Type="N">
+<Text>
+<![CDATA[XIC(BlueESTOP3)OTE(MBTU_MB_1xx[6]);]]>
+</Text>
+</Rung>
+<Rung Number="33" Type="N">
+<Text>
+<![CDATA[XIC(Red_DS_Switch:I.PortFa1_1Connected)OTE(MBTU_MB_1xx[7]);]]>
+</Text>
+</Rung>
+<Rung Number="34" Type="N">
+<Text>
+<![CDATA[XIC(Red_DS_Switch:I.PortFa1_2Connected)OTE(MBTU_MB_1xx[8]);]]>
+</Text>
+</Rung>
+<Rung Number="35" Type="N">
+<Text>
+<![CDATA[XIC(Red_DS_Switch:I.PortFa1_3Connected)OTE(MBTU_MB_1xx[9]);]]>
+</Text>
+</Rung>
+<Rung Number="36" Type="N">
+<Text>
+<![CDATA[XIC(Blue_DS_Switch:I.PortFa1_1Connected)OTE(MBTU_MB_1xx[10]);]]>
+</Text>
+</Rung>
+<Rung Number="37" Type="N">
+<Text>
+<![CDATA[XIC(Blue_DS_Switch:I.PortFa1_2Connected)OTE(MBTU_MB_1xx[11]);]]>
+</Text>
+</Rung>
+<Rung Number="38" Type="N">
+<Text>
+<![CDATA[XIC(Blue_DS_Switch:I.PortFa1_3Connected)OTE(MBTU_MB_1xx[12]);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+</Routines>
+</Program>
+</Programs>
+</Controller>
+</RSLogix5000Content>

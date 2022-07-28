@@ -26,8 +26,8 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void drive(double forwardSpeed, double turnSpeed) {
-    double left = forwardSpeed + turnSpeed;
-    double right = forwardSpeed - turnSpeed;
+    double left = -forwardSpeed + turnSpeed;
+    double right = -forwardSpeed - turnSpeed;
 
     rearRight.set(right);
     frontRight.set(right);
