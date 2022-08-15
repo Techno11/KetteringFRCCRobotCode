@@ -27,6 +27,7 @@ public class RobotContainer {
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
   private final AuxSubsystem m_aux1 = new AuxSubsystem(Constants.Aux1);
   private final AuxSubsystem m_aux2 = new AuxSubsystem(Constants.Aux2);
+  private final AuxSubsystem m_aux3 = new AuxSubsystem(Constants.Aux3);
 
   // Joystick
   private final Joystick m_joystick = new Joystick(0);
@@ -61,6 +62,12 @@ public class RobotContainer {
     
     JoystickButton y = new JoystickButton(m_joystick, Constants.JS_Y);
     y.whileHeld(new AuxCommand(m_aux1, .75));
+
+    JoystickButton lb = new JoystickButton(m_joystick, Constants.JS_LB);
+    lb.whileHeld(new AuxCommand(m_aux3, -.75));
+
+    JoystickButton rb = new JoystickButton(m_joystick, Constants.JS_RB);
+    rb.whileHeld(new AuxCommand(m_aux3, -.75));
   }
 
   /**

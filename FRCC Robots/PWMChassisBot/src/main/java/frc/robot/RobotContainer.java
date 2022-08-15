@@ -7,14 +7,18 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import frc.robot.Constants.AvalButtons;
+import frc.robot.Constants.AvalDriveModes;
 import frc.robot.commands.AuxCommand;
-import frc.robot.commands.AuxCommandTriggers;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.AuxSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.Button;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -25,11 +29,24 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  private final AuxSubsystem m_aux1 = new AuxSubsystem(Constants.Aux1);
-  private final AuxSubsystem m_aux2 = new AuxSubsystem(Constants.Aux2);
+  private final AuxSubsystem m_aux1 = new AuxSubsystem(4);
+  private final AuxSubsystem m_aux2 = new AuxSubsystem(5);
+  private final AuxSubsystem m_aux3 = new AuxSubsystem(6);
+  private final AuxSubsystem m_aux4 = new AuxSubsystem(7);
+  private final AuxSubsystem m_aux5 = new AuxSubsystem(8);
+  private final AuxSubsystem m_aux6 = new AuxSubsystem(9);
 
   // Joystick
   private final Joystick m_joystick = new Joystick(0);
+
+  // Default Commands
+  private final DriveCommand m_driveCommand = new DriveCommand(m_driveSubsystem, m_joystick);
+  private final AuxCommand m_aux1Command = new AuxCommand(m_aux1, m_joystick, "PWM4");
+  private final AuxCommand m_aux2Command = new AuxCommand(m_aux2, m_joystick, "PWM5");
+  private final AuxCommand m_aux3Command = new AuxCommand(m_aux3, m_joystick, "PWM6");
+  private final AuxCommand m_aux4Command = new AuxCommand(m_aux4, m_joystick, "PWM7");
+  private final AuxCommand m_aux5Command = new AuxCommand(m_aux5, m_joystick, "PWM8");
+  private final AuxCommand m_aux6Command = new AuxCommand(m_aux6, m_joystick, "PWM9");
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -39,13 +56,21 @@ public class RobotContainer {
 
     // Set Default Commands
     setDefaultCommands();
+
+    // Setup shuffleboard "Main Dashboard"
+    setupShuffleboardDashboard();
   }
 
   // Set Subsystem Default Commands
   public void setDefaultCommands() {
-    m_driveSubsystem.setDefaultCommand(new DriveCommand(m_driveSubsystem, m_joystick));
+    m_driveSubsystem.setDefaultCommand(m_driveCommand);
 
-    m_aux2.setDefaultCommand(new AuxCommandTriggers(m_aux2, m_joystick));
+    m_aux1.setDefaultCommand(m_aux1Command);
+    m_aux2.setDefaultCommand(m_aux2Command);
+    m_aux3.setDefaultCommand(m_aux3Command);
+    m_aux4.setDefaultCommand(m_aux4Command);
+    m_aux5.setDefaultCommand(m_aux5Command);
+    m_aux6.setDefaultCommand(m_aux6Command);
   }
 
   /**
@@ -55,12 +80,117 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton a = new JoystickButton(m_joystick, Constants.JS_A);
-    a.whileHeld(new AuxCommand(m_aux1, -.75));
 
+  }
+
+  private void setupShuffleboardDashboard() {
+    ShuffleboardTab primaryTab = Shuffleboard.getTab("Main Dashboard");
+
+    // Preconfigured bots
+    ShuffleboardLayout preconfBots = primaryTab.getLayout("Preconfigured Bots", BuiltInLayouts.kList)
+    .withSize(2, 4)
+    .withPosition(0, 0);
+    // .withProperties(Map.of("Label position", "HIDDEN")); // hide labels for commands
+
+    preconfBots.add("Seperated Aux Motors |A-Y, Triggers|", new InstantCommand(() -> {
+      m_aux1Command.setButtons(AvalButtons.A_Y);
+      m_aux2Command.setButtons(AvalButtons.Triggers);
+      m_aux1Command.setInverted(false);
+      m_aux2Command.setInverted(false);
+
+    }));
+
+    preconfBots.add("Linked Inline Aux Motors |Triggers|", new InstantCommand(() -> {
+      m_aux1Command.setButtons(AvalButtons.Triggers);
+      m_aux2Command.setButtons(AvalButtons.Triggers);
+      m_aux1Command.setInverted(false);
+      m_aux2Command.setInverted(false);
+    }));
+
+    preconfBots.add("Linked Opposing Aux Motors |Triggers|", new InstantCommand(() -> {
+      m_aux1Command.setButtons(AvalButtons.Triggers);
+      m_aux2Command.setButtons(AvalButtons.Triggers);
+      m_aux1Command.setInverted(false);
+      m_aux2Command.setInverted(true);
+    }));
+
+
+    // BYOB (Build your own bot)
+    ShuffleboardLayout preconfDriveModes = primaryTab.getLayout("Quick Drive Modes", BuiltInLayouts.kList)
+    .withSize(2, 4)
+    .withPosition(2, 0);
+    // .withProperties(Map.of("Label position", "HIDDEN")); // hide labels for commands
+
+    preconfDriveModes.add("Arcade", new InstantCommand(() -> {
+      m_driveCommand.setDriveMode(AvalDriveModes.Arcade);
+    }));
+
+    preconfDriveModes.add("Tank", new InstantCommand(() -> {
+      m_driveCommand.setDriveMode(AvalDriveModes.Tank);
+    }));
+
+    preconfDriveModes.add("Swap Front-Back", new InstantCommand(() -> {
+      m_driveCommand.swapInverted();
+    }));    
+
+    ShuffleboardLayout preconfIntakeModes = primaryTab.getLayout("Preconfigured Intakes |A-Y|", BuiltInLayouts.kList)
+    .withSize(2, 4)
+    .withPosition(4, 0);
+    // .withProperties(Map.of("Label position", "HIDDEN")); // hide labels for commands
+
+    preconfIntakeModes.add("Single Motor |PWM 4|", new InstantCommand(() -> {
+      m_aux1Command.setButtons(AvalButtons.A_Y);
+      m_aux1Command.setInverted(false);
+    }));
+
+    preconfIntakeModes.add("Dual Opposing Motors |PWM 4-5|", new InstantCommand(() -> {
+      m_aux1Command.setButtons(AvalButtons.A_Y);
+      m_aux2Command.setButtons(AvalButtons.A_Y);
+      m_aux1Command.setInverted(false);
+      m_aux2Command.setInverted(true);
+    }));
+
+    preconfIntakeModes.add("Dual Inline Motors |PWM 4-5|", new InstantCommand(() -> {
+      m_aux1Command.setButtons(AvalButtons.A_Y);
+      m_aux2Command.setButtons(AvalButtons.A_Y);
+      m_aux1Command.setInverted(false);
+      m_aux2Command.setInverted(false);
+    }));
+
+    preconfIntakeModes.add("Reverse Direction", new InstantCommand(() -> {
+      m_aux1Command.swapInverted();
+      m_aux2Command.swapInverted();
+    }));
+
+    ShuffleboardLayout preconfShooterModes = primaryTab.getLayout("Preconfigured Shooters |Triggers|", BuiltInLayouts.kList)
+    .withSize(2, 4)
+    .withPosition(6, 0);
+    // .withProperties(Map.of("Label position", "HIDDEN")); // hide labels for commands
+
+    preconfShooterModes.add("Single Motor |PWM 6|", new InstantCommand(() -> {
+      m_aux3Command.setButtons(AvalButtons.Triggers);
+      m_aux3Command.setInverted(false);
+    }));
+
+    preconfShooterModes.add("Dual Opposing Motors |PWM 6-7|", new InstantCommand(() -> {
+      m_aux3Command.setButtons(AvalButtons.Triggers);
+      m_aux4Command.setButtons(AvalButtons.Triggers);
+      m_aux3Command.setInverted(false);
+      m_aux4Command.setInverted(true);
+    }));
+
+    preconfShooterModes.add("Dual Inline Motors |PWM 6-7|", new InstantCommand(() -> {
+      m_aux3Command.setButtons(AvalButtons.Triggers);
+      m_aux4Command.setButtons(AvalButtons.Triggers);
+      m_aux3Command.setInverted(false);
+      m_aux4Command.setInverted(false);
+    }));
+
+    preconfShooterModes.add("Reverse Direction", new InstantCommand(() -> {
+      m_aux3Command.swapInverted();
+      m_aux4Command.swapInverted();
+    }));
     
-    JoystickButton y = new JoystickButton(m_joystick, Constants.JS_Y);
-    y.whileHeld(new AuxCommand(m_aux1, .75));
   }
 
   /**

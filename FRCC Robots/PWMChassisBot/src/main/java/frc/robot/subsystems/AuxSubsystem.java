@@ -10,15 +10,15 @@ import frc.robot.Constants;
 
 public class AuxSubsystem extends SubsystemBase {
 
-  private PWMVictorSPX aux;
+  private PWMVictorSPX aux0;
 
   /** Creates a new Aux1Subsystem. */
-  public AuxSubsystem(int port) {
-    aux = new PWMVictorSPX(port);
+  public AuxSubsystem(int port0) {
+    aux0 = new PWMVictorSPX(port0);
   }
 
-  public void run(double power) {
-    aux.set(power);
+  public void run0(double power) {
+    aux0.set(power);
   }
 
   @Override

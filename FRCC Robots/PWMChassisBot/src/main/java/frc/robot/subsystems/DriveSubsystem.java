@@ -25,7 +25,7 @@ public class DriveSubsystem extends SubsystemBase {
     frontRight.setInverted(true);
   }
 
-  public void drive(double forwardSpeed, double turnSpeed) {
+  public void arcadeDrive(double forwardSpeed, double turnSpeed) {
     double left = -forwardSpeed + turnSpeed;
     double right = -forwardSpeed - turnSpeed;
 
@@ -33,6 +33,14 @@ public class DriveSubsystem extends SubsystemBase {
     frontRight.set(right);
     rearLeft.set(left);
     frontLeft.set(left);
+  }
+
+  public void tankDrive(double lSpeed, double rSpeed) {
+
+    rearRight.set(rSpeed);
+    frontRight.set(rSpeed);
+    rearLeft.set(lSpeed);
+    frontLeft.set(lSpeed);
   }
 
   @Override

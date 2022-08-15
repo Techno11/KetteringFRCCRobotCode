@@ -19,6 +19,7 @@ public final class Constants {
     public static final int FrontRight = 3;
     public static final int Aux1 = 4;
     public static final int Aux2 = 5;
+    public static final int Aux3 = 6;
 
         // Joystick Axes
         public static final int LEFT_X = 0;
