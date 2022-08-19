@@ -37,16 +37,17 @@ public class RobotContainer {
   private final AuxSubsystem m_aux6 = new AuxSubsystem(9);
 
   // Joystick
-  private final Joystick m_joystick = new Joystick(0);
+  private final Joystick m_stick0 = new Joystick(0);
+  private final Joystick m_stick1 = new Joystick(1);
 
   // Default Commands
-  private final DriveCommand m_driveCommand = new DriveCommand(m_driveSubsystem, m_joystick);
-  private final AuxCommand m_aux1Command = new AuxCommand(m_aux1, m_joystick, "PWM4");
-  private final AuxCommand m_aux2Command = new AuxCommand(m_aux2, m_joystick, "PWM5");
-  private final AuxCommand m_aux3Command = new AuxCommand(m_aux3, m_joystick, "PWM6");
-  private final AuxCommand m_aux4Command = new AuxCommand(m_aux4, m_joystick, "PWM7");
-  private final AuxCommand m_aux5Command = new AuxCommand(m_aux5, m_joystick, "PWM8");
-  private final AuxCommand m_aux6Command = new AuxCommand(m_aux6, m_joystick, "PWM9");
+  private final DriveCommand m_driveCommand = new DriveCommand(m_driveSubsystem, m_stick0, m_stick1);
+  private final AuxCommand m_aux1Command = new AuxCommand(m_aux1, m_stick0, m_stick1, "PWM4");
+  private final AuxCommand m_aux2Command = new AuxCommand(m_aux2, m_stick0, m_stick1, "PWM5");
+  private final AuxCommand m_aux3Command = new AuxCommand(m_aux3, m_stick0, m_stick1, "PWM6");
+  private final AuxCommand m_aux4Command = new AuxCommand(m_aux4, m_stick0, m_stick1, "PWM7");
+  private final AuxCommand m_aux5Command = new AuxCommand(m_aux5, m_stick0, m_stick1, "PWM8");
+  private final AuxCommand m_aux6Command = new AuxCommand(m_aux6, m_stick0, m_stick1, "PWM9");
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */

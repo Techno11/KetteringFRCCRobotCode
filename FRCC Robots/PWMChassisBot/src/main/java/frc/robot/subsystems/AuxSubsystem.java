@@ -6,7 +6,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 
 public class AuxSubsystem extends SubsystemBase {
 
@@ -17,7 +16,7 @@ public class AuxSubsystem extends SubsystemBase {
     aux0 = new PWMVictorSPX(port0);
   }
 
-  public void run0(double power) {
+  public void run(double power) {
     aux0.set(power);
   }
 

@@ -61,6 +61,8 @@ public final class Constants {
         Arcade("Split Arcade"),
         ArcadeLeft("Left Arcade"),
         ArcadeRight("Right Arcade"),
+        TeamworkArcade("Teamwork Arcade"),
+        TeamworkTank("Teamwork Tank"),
         Tank("Tank");
 
         public final String label;

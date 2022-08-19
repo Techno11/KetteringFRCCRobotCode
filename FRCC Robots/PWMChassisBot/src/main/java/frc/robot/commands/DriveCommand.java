@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class DriveCommand extends CommandBase {
 
   private final DriveSubsystem m_subsystem;
-  private final Joystick m_js;
+  private final Joystick m_js0, m_js1;
 
   private SendableChooser<Constants.AvalDriveModes> drivetrainType = new SendableChooser<Constants.AvalDriveModes>();
   private NetworkTableEntry reverseDrivetrain, maxDriveSpeed;
@@ -33,17 +33,24 @@ public class DriveCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveCommand(DriveSubsystem subsystem, Joystick js) {
+  public DriveCommand(DriveSubsystem subsystem, Joystick js_0, Joystick js_1) {
+    // Set class globals
     m_subsystem = subsystem;
-    m_js = js;
-    // Use addRequirements() here to declare subsystem dependencies.
+    m_js0 = js_0;
+    m_js1 = js_1;
+
+    // Require subsystems
     addRequirements(subsystem);
 
+    // Get Suffleboard tab
     tab = Shuffleboard.getTab("Drivetrain");
 
+    // Setup drivetype chooser
     drivetrainType.setDefaultOption(AvalDriveModes.Arcade.label, AvalDriveModes.Arcade);
     drivetrainType.addOption(AvalDriveModes.ArcadeLeft.label, AvalDriveModes.ArcadeLeft);
     drivetrainType.addOption(AvalDriveModes.ArcadeRight.label, AvalDriveModes.ArcadeRight);
+    drivetrainType.addOption(AvalDriveModes.TeamworkArcade.label, AvalDriveModes.TeamworkArcade);
+    drivetrainType.addOption(AvalDriveModes.TeamworkTank.label, AvalDriveModes.TeamworkTank);
     drivetrainType.addOption(AvalDriveModes.Tank.label, AvalDriveModes.Tank);
 
     tab.add("Drive Mode", drivetrainType)
@@ -90,14 +97,24 @@ public class DriveCommand extends CommandBase {
     boolean doReverse = reverseDrivetrain.getBoolean(false);
     double maxSpeed = maxDriveSpeed.getDouble(1);
 
-    if(dMode != Constants.AvalDriveModes.Tank) {
-      int xStick = (dMode == Constants.AvalDriveModes.Arcade) ? Constants.RIGHT_X : 
-        (dMode ==  Constants.AvalDriveModes.ArcadeLeft) ? Constants.LEFT_X : Constants.RIGHT_X;
-      int yStick = (dMode == Constants.AvalDriveModes.Arcade) ? Constants.LEFT_Y : 
-        (dMode == Constants.AvalDriveModes.ArcadeLeft) ? Constants.LEFT_Y : Constants.RIGHT_Y;
+    // Calculate if we're in teamwork mode
+    boolean teamworkMode = dMode == AvalDriveModes.TeamworkArcade || dMode == AvalDriveModes.TeamworkTank;
 
-      double xVal = m_js.getRawAxis(xStick) * maxSpeed;
-      double yVal = m_js.getRawAxis(yStick) * maxSpeed;
+    // If we're in teamwork mode, the second stick is actually JS_1
+    Joystick secondStick = teamworkMode ? m_js1 : m_js0;
+
+    // If we're not in tank mode
+    if(dMode != AvalDriveModes.Tank && dMode != AvalDriveModes.TeamworkTank) {
+      // Get the axis value that we're supposed to have 
+      int xStick = (dMode == AvalDriveModes.Arcade || dMode == AvalDriveModes.TeamworkArcade) ? Constants.RIGHT_X : 
+        (dMode ==  AvalDriveModes.ArcadeLeft) ? Constants.LEFT_X : Constants.RIGHT_X;
+
+      int yStick = (dMode == Constants.AvalDriveModes.Arcade) ? Constants.LEFT_Y : 
+        (dMode == AvalDriveModes.ArcadeLeft) ? Constants.LEFT_Y : Constants.RIGHT_Y;
+
+      // Read Axis
+      double xVal = m_js0.getRawAxis(xStick) * maxSpeed;
+      double yVal = secondStick.getRawAxis(yStick) * maxSpeed;
 
       if (!doReverse) {
         yVal = -yVal;
@@ -105,8 +122,8 @@ public class DriveCommand extends CommandBase {
 
       m_subsystem.arcadeDrive(yVal * .75, xVal * .75);
     } else {
-      double lStick = m_js.getRawAxis(Constants.LEFT_Y) * maxSpeed;
-      double rStick = m_js.getRawAxis(Constants.RIGHT_Y) * maxSpeed;
+      double lStick = m_js0.getRawAxis(Constants.LEFT_Y) * maxSpeed;
+      double rStick = secondStick.getRawAxis(Constants.RIGHT_Y) * maxSpeed;
 
       if(doReverse) {
         m_subsystem.tankDrive(lStick * -.75, rStick * -.75);
