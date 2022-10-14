@@ -17,14 +17,17 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.LiftCommand;
 import frc.robot.commands.AutonCommands.DriveGyroTimed;
+import frc.robot.commands.AutonCommands.IntakeTimed;
 import frc.robot.commands.AutonGroups.DropAndMoveBack;
 import frc.robot.commands.AutonGroups.TwoBallGyro;
 import frc.robot.commands.AutonGroups.TwoBallTimed;
 import frc.robot.commands.AutonGroups.TwoSecondSquare;
+import frc.robot.commands.AutonGroups.Wait10ScoreBack;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ManipSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -73,12 +76,16 @@ public class RobotContainer {
   private void configAutonModes() {
     // Add commands to the autonomous command chooser
     m_chooser.setDefaultOption("Drop and Drive Back (Center Starting Position)", new DropAndMoveBack(m_driveSubsystem, m_manipSubsystem, m_intakeSubsystem));
+    m_chooser.addOption("Wait 10, Drop and Drive Back", new Wait10ScoreBack(m_driveSubsystem, m_manipSubsystem, m_intakeSubsystem));
     m_chooser.addOption("Two Ball Gyro (Side Starting Positions)", new TwoBallGyro(m_driveSubsystem, m_manipSubsystem, m_intakeSubsystem, gyro));
     m_chooser.addOption("Two Ball Timed (Less Reliable)", new TwoBallTimed(m_driveSubsystem, m_manipSubsystem, m_intakeSubsystem, gyro));
+    m_chooser.addOption("Score Only", new IntakeTimed(m_intakeSubsystem, 1, 2));
 
     // Java Camp Demonstrations
     m_chooser.addOption("Kick Me! (Gyro Drive Straight 10 Seconds)", new DriveGyroTimed(.3, 10, m_driveSubsystem, gyro));
     m_chooser.addOption("Gyro 2 Second Square", new TwoSecondSquare(m_driveSubsystem, gyro));
+
+    m_chooser.addOption("Do Nothing", new InstantCommand());
   
 
     // Put the chooser on the dashboard
@@ -87,8 +94,10 @@ public class RobotContainer {
 
   private void setDefaultCommands() {
     m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, driverJoystick));
-    m_manipSubsystem.setDefaultCommand(new LiftCommand(m_manipSubsystem, auxJoystick));
-    m_intakeSubsystem.setDefaultCommand(new IntakeCommand(m_intakeSubsystem, auxJoystick));
+    m_manipSubsystem.setDefaultCommand(new LiftCommand(m_manipSubsystem, driverJoystick));
+    //m_manipSubsystem.setDefaultCommand(new LiftCommand(m_manipSubsystem, auxJoystick));
+    m_intakeSubsystem.setDefaultCommand(new IntakeCommand(m_intakeSubsystem, driverJoystick));
+    //m_intakeSubsystem.setDefaultCommand(new IntakeCommand(m_intakeSubsystem, auxJoystick));
   }
 
   /**

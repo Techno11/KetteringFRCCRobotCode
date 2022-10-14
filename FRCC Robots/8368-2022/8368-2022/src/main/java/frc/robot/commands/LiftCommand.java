@@ -29,7 +29,14 @@ public class LiftCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.subsystem.runManip(-this.js.getRawAxis(Constants.LEFT_Y) * .3);
+    // this.subsystem.runManip(-this.js.getRawAxis(Constants.LEFT_Y) * .3);
+    if(this.js.getRawAxis(Constants.RIGHT_TRIGGER) > .3) {
+      this.subsystem.runManip(.6);
+    } else if(this.js.getRawAxis(Constants.LEFT_TRIGGER) > .3) {
+      this.subsystem.runManip(-.6);
+    } else {
+      this.subsystem.runManip(0);
+    }
   }
 
   // Called once the command ends or is interrupted.

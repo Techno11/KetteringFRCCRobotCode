@@ -29,7 +29,14 @@ public class IntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.subsystem.runIntake(js.getRawAxis(Constants.LEFT_TRIGGER) - js.getRawAxis(Constants.RIGHT_TRIGGER));
+    // this.subsystem.runIntake(js.getRawAxis(Constants.LEFT_TRIGGER) - js.getRawAxis(Constants.RIGHT_TRIGGER));
+    if(this.js.getRawButton(Constants.JS_RB)) {
+      this.subsystem.runIntake(1);
+    } else if(this.js.getRawButton(Constants.JS_LB)) {
+      this.subsystem.runIntake(-1);
+    } else {
+      this.subsystem.runIntake(0);
+    }
   }
 
   // Called once the command ends or is interrupted.
