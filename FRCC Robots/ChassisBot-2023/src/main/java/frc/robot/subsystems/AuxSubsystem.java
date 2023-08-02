@@ -4,16 +4,16 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.utils.AutoDetectMotorController;
 
 public class AuxSubsystem extends SubsystemBase {
 
-  private PWMVictorSPX aux0;
+  private AutoDetectMotorController aux0;
 
   /** Creates a new Aux1Subsystem. */
   public AuxSubsystem(int port0) {
-    aux0 = new PWMVictorSPX(port0);
+    aux0 = new AutoDetectMotorController(port0);
   }
 
   public void run(double power) {
